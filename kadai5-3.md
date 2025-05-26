@@ -8,7 +8,7 @@
 * APIの名称と参照URL
 　　* 名称は天気予測APIのopen-Meteo URLはhttps://open-meteo.com/
 * エンドポイントと機能
-  　* エンドポイントはhttps://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyoであり、入力した緯度、経度の値から最高気温を出力します。
+  　* エンドポイントはhttps://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo　であり、入力した緯度、経度の値から最高気温を出力します。
 * リクエストとレスポンスのフォーマット
 　　* latitude=${latitude}で緯度を入力し、longitude=${longitude}で経度を入力します。daily=temperature_2m_maxから最高気温、temperature_2m_minから最低気温の値が欲しいとリクエストします。今回は最高気温と、最低気温をリクエストしたので、レスポンスのdailyの中にdaily=temperature_2m_max、temperature_2m_minの値が入っており、それをHTMLに出力する。
 ### Q3-3. 感想
