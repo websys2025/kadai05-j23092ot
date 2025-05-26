@@ -4,19 +4,30 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
+    <h1 id="msg">気温予測のAPI</h1>
     <form name="apiform"><p>
-        何かのフォーム：<input type="text" name="form_data">
-        <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
+        　緯度、経度　の形式で入力してください：<input type="text" name="form_data">
+        <button type="button" id="btn1" onclick="meteo_api(this.form)">実行</button>
     </p></form>
     
     <div id="result"></div>
-    <script>
-        async function some_api(myForm) {
-            // ここにコードを書く
-            document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
-            document.apiform.reset();
-        }
-    </script>
+<script>
+    async function meteo_api(myForm) {
+        const location = myForm.form_data.value;
+        const [latitude, longitude] = location.split(",");
+        
+
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo`;
+
+            const ares = await fetch(url);
+            const JSONdata = await ares.json();
+
+            document.getElementById("result").innerHTML = 
+                `最高気温: ${JSONdata.daily.temperature_2m_max[0]}°C, 最低気温: ${JSONdata.daily.temperature_2m_min[0]}°C`;
+
+        myForm.reset();
+    }
+</script>
+
 </body>
 </html>
